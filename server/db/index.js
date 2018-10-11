@@ -6,10 +6,18 @@ var mysql = require('mysql');
 
 var connection = mysql.createConnection({
   // host     : 'localhost',
-  user     : 'root',
-  password : '',
+  user     : 'student',
+  password : 'student',
   database : 'chat'
 });
 
-export default connection;
 
+connection.connect(function(err) {
+  if (err) {
+    return console.error('error');
+  }
+ 
+  console.log('Connected to the MySQL server.');
+});
+
+module.exports = connection;
