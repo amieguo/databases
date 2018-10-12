@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS chat;
 CREATE DATABASE chat;
 
 USE chat;
@@ -13,12 +14,12 @@ USE chat;
 -- 
 -- ---
 
-DROP TABLE IF EXISTS `Users`;
+DROP TABLE IF EXISTS users;
     
-CREATE TABLE `Users` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `userName` CHAR(20) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE users (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  username CHAR(20) NOT NULL,
+  PRIMARY KEY (ID)
 );
 
 -- ---
@@ -26,27 +27,27 @@ CREATE TABLE `Users` (
 -- 
 -- ---
 
-DROP TABLE IF EXISTS `Rooms`;
+-- DROP TABLE IF EXISTS `Rooms`;
     
-CREATE TABLE `Rooms` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `roomName` CHAR(20) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE `Rooms` (
+--   `id` INTEGER NOT NULL AUTO_INCREMENT,
+--   `roomName` CHAR(20) NULL DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- );
 
 -- ---
 -- Table 'Messages'
 -- 
 -- ---
 
-DROP TABLE IF EXISTS `Messages`;
+DROP TABLE IF EXISTS messages;
     
-CREATE TABLE `Messages` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `Message` MEDIUMTEXT NULL DEFAULT NULL,
-  `id_Users` INTEGER NULL DEFAULT NULL,
-  `id_Rooms` INTEGER NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE messages (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  userid int NOT NULL,
+  text varchar(200) NOT NULL,
+  roomname varchar(20),
+  PRIMARY KEY (ID)
 );
 
 -- ---
@@ -54,19 +55,19 @@ CREATE TABLE `Messages` (
 -- 
 -- ---
 
-DROP TABLE IF EXISTS `Friends`;
+-- DROP TABLE IF EXISTS `Friends`;
     
-CREATE TABLE `Friends` (
-  `id_Users` INTEGER NULL DEFAULT NULL
-);
+-- CREATE TABLE `Friends` (
+--   `id_Users` INTEGER NULL DEFAULT NULL
+-- );
 
 -- ---
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE `Messages` ADD FOREIGN KEY (id_Users) REFERENCES `Users` (`id`);
-ALTER TABLE `Messages` ADD FOREIGN KEY (id_Rooms) REFERENCES `Rooms` (`id`);
-ALTER TABLE `Friends` ADD FOREIGN KEY (id_Users) REFERENCES `Users` (`id`);
+-- ALTER TABLE `Messages` ADD FOREIGN KEY (id_Users) REFERENCES `Users` (`id`);
+-- ALTER TABLE `Messages` ADD FOREIGN KEY (id_Rooms) REFERENCES `Rooms` (`id`);
+-- ALTER TABLE `Friends` ADD FOREIGN KEY (id_Users) REFERENCES `Users` (`id`);
 
 -- ---
 -- Table Properties
